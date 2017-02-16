@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <h1>URLs</h1>
   <title>TinyApp</title>
 </head>
 <body>
@@ -9,12 +10,14 @@
   </header>
   <% for(k in urls){ %>
     <li>
+      <span>
       <%= k %> ->
       <%= urls[k] %>
       <form method="POST" action="/urls/<%= k %>/delete">
         <input type="submit" value="Delete">
       </form>
       <a href="/urls/<%= k%>">Edit</a>
+      </span>
     </li>
   <% } %>
   <p>Have a link you want to shorten?</p>
