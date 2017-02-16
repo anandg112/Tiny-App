@@ -24,9 +24,6 @@ app.get("/urls.json", (req, res) => {
   res.json(urlDatabase); //showing the database
 });
 
-// app.get("/hello", (req, res) =>{
-//   res.end("<html><body>Hello <b>World</b></body></html>\n");
-// });
 
 app.get("/urls", (req, res) => {
   let templateVars = {urls: urlDatabase,  username: req.cookies["username"]};
