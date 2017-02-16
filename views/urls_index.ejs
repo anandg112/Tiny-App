@@ -10,17 +10,16 @@
   </header>
   <% for(k in urls){ %>
     <li>
-      <span>
       <%= k %> ->
       <%= urls[k] %>
       <form method="POST" action="/urls/<%= k %>/delete">
         <input type="submit" value="Delete">
       </form>
       <a href="/urls/<%= k%>">Edit</a>
-      </span>
     </li>
   <% } %>
-  <p>Have a link you want to shorten?</p>
-  <a href="/urls/new">Shor.t</a>
+  <p>Have a link you want to shorten?
+      <a href="/urls/new">Shor.tn</a>
+  </p>
 </body>
 </html>
