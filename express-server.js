@@ -15,7 +15,7 @@ let users = {
   "userRandomID": {
     id: "userRandomID",
     email: "user@example.com",
-    password: "purple-monkey-dinosaur"
+    password: "123"
   },
  "user2RandomID": {
     id: "user2RandomID",
@@ -30,7 +30,7 @@ let urlDatabase = {
             },
   "9sm5xK": { longURL: "http://www.google.com",
               userID:  "user2RandomID"
-            }
+            },
 };
 
 
@@ -87,14 +87,15 @@ app.post("/urls", (req, res) => {
 
 //Deleting an URL
 app.post("/urls/:id/delete", (req, res) =>{
-  delete urlDatabase[req.params.id].longURL;
+  delete urlDatabase[req.params.id];
   res.redirect('/urls');
 });
 
 //Redirecting to the long URL
 app.get("/u/:shortURL", (req, res) => {
-  let longURL = urlDatabase[req.params.id].longURL;
+  let longURL = urlDatabase[shortURL].longURL;
   res.redirect(longURL);
+  //res.send({ redirect: '/longURL' });
 });
 
 //Updating the URL
