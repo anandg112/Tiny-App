@@ -8,16 +8,13 @@
   <header>
     <% include partials/_header %>
   </header>
-  <% for(k in urls){ %>
-    <li>
-      <%= k %> ->
-      <%= urls[k] %>
-      <form method="POST" action="/urls/<%= k %>/delete">
-        <input type="submit" value="Delete">
-      </form>
-      <a href="/urls/<%= k%>">Edit</a>
-    </li>
-  <% } %>
+  <% for(shortURL in urls){ %>
+    <li>  <%= shortURL %> -> <%= urls[shortURL]["longURL"] %> </li>
+        <form method="POST" action="/urls/<%= shortURL %>/delete">
+          <input type="submit" value="Delete">
+        </form>
+      <a href="/urls/<%= shortURL%>">Edit</a>
+<% } %>
   <p>
     <em>
       <b>Have a link you want to shorten?</b>
