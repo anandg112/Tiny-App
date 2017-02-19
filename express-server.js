@@ -2,6 +2,7 @@ const express =require("express");
 const bodyParser = require("body-parser");
 const generateRandNum = require("./random.js");
 const cookieParser = require("cookie-parser");
+const bcrypt = require("bcrypt");
 
 const app = express();
 
@@ -115,12 +116,11 @@ app.post("/login", (req, res) => {
   let userName = req.body.email;
   let pwd = req.body.password;
   for(let user_id in users){
-    if(users[user_id].email === userName){
-      if(users[user_id].password === pwd){
+    const match = bcrypt.compareSync(pwd, users[user_id].password);
+      if(users[user_id].email === userName && (match === true)){
         res.cookie('userCookie', user_id);
         console.log(users);
         res.redirect("/urls");
-      }
     }
   }
   res.status(403).send("You have not registered yet!");
@@ -141,6 +141,7 @@ app.get("/register", (req, res) => {
 app.post("/register", (req, res) => {
   let email = req.body.email;
   let pwd = req.body.password;
+  let hashed_password = bcrypt.hashSync(pwd, 10);
   let user_id = generateRandNum();
 
   if(email === "" || pwd === ""){
@@ -152,7 +153,7 @@ app.post("/register", (req, res) => {
       res.status(400).send("Your email was already registered");
       return;
     }
-      users[user_id] = {email: email, password: pwd };
+      users[user_id] = {email: email, password: hashed_password };
       res.cookie("userCookie", user_id);
       console.log(users);
       res.redirect("/urls");

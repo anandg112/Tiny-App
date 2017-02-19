@@ -12,9 +12,10 @@
     <li>  <%= shortURL %> -> <%= urls[shortURL]["longURL"] %> </li>
         <form method="POST" action="/urls/<%= shortURL %>/delete">
           <input type="submit" value="Delete">
+          <a href="/urls/<%= shortURL%>">Edit</a>
         </form>
-      <a href="/urls/<%= shortURL%>">Edit</a>
-<% } %>
+  <% } %>
+  
   <p>
     <em>
       <b>Have a link you want to shorten?</b>
@@ -22,4 +23,3 @@
       <a href="/urls/new">Shor.tn</a>
   </p>
 </body>
-</html>
