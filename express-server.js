@@ -94,9 +94,8 @@ app.post("/urls/:id/delete", (req, res) =>{
 
 //Redirecting to the long URL
 app.get("/u/:shortURL", (req, res) => {
-  let longURL = urlDatabase[shortURL].longURL;
+  let longURL = urlDatabase[req.params.shortURL].longURL;
   res.redirect(longURL);
-  //res.send({ redirect: '/longURL' });
 });
 
 //Updating the URL
