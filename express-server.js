@@ -49,7 +49,9 @@ function checkForHttpPrefix(string) {
 
 //Homepage routing
 app.get("/", (req, res) => {
-  res.render("/urls"); // Homepage
+  let templateVars = { urls: urlsForUser(req.session.userCookie),
+  user_id: users[req.session.userCookie] };
+  res.render("urls_index", templateVars); // Homepage
 });
 
 //Showing the urlDatabase
@@ -153,7 +155,7 @@ app.get("/register", (req, res) => {
   user_id: req.session.userCookie,
   users: users  };
   if(req.session.userCookie){
-    res.render("urls", templateVars);
+    res.render("urls_index", templateVars);
   } else {
     res.render("user-reg.ejs");
 }
