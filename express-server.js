@@ -38,14 +38,6 @@ let urlDatabase = {
             },
 };
 
-function checkForHttpPrefix(string) {
-  var prefix = '';
-  if (!/^(http|https|ftp):\/\/.*$/.test(string)) {
-    prefix = "http://"
-  }
-  return `${prefix}${string}`;
-};
-
 
 //Homepage routing
 app.get("/", (req, res) => {
@@ -90,20 +82,30 @@ app.get("/urls/new", (req, res) => {
 
 //Showing the URLs
 app.get("/urls/:id", (req, res) => {
-  let templateVars = { shortURL: req.params.id,
-    longURL: urlDatabase[req.params.id].longURL,
-    user_id: req.session.userCookie,
-    users: users};
-  res.render("urls_show", templateVars);
+  let urlObj = urlDatabase[req.params.id];
+  if (!urlObj) {
+    res.status(404).send("Not found!");
+  } else {
+    let templateVars = { shortURL: req.params.id,
+      longURL: urlObj.longURL,
+      user_id: req.session.userCookie,
+      users: users};
+    console.log(templateVars);
+    res.render("urls_show", templateVars);
+  }
 });
 
 //Generating a shortURL for longURL
 app.post("/urls", (req, res) => {
   //console.log('REQ BODY', req.body);  // debug statement to see POST parameters
-  let newShortURL = generateRandNum();
   let longURL = req.body.longURL;
-  urlDatabase[newShortURL] = {longURL: longURL, userID:req.session.userCookie};
-  res.redirect("/urls"+"/"+newShortURL);
+  let newShortURL = generateRandNum();
+  if(longURL === ""){
+   res.status(400).send("Did not submit a URL.")
+  } else {
+    urlDatabase[newShortURL] = {longURL: longURL, userID:req.session.userCookie};
+    res.redirect("/urls"+"/"+newShortURL);
+  }
 });
 
 //Deleting an URL
@@ -125,8 +127,15 @@ app.post("/urls/:id/update", (req, res) => {
   res.redirect("/urls");
 });
 
-app.get("/login", (req, res) =>{
-  res.render("login.ejs")
+app.get("/login", (req, res) => {
+  let templateVars = {urls: urlDatabase,
+  user_id: req.session.userCookie,
+  users: users  };
+  if(req.session.userCookie){
+    res.render("urls_index", templateVars);
+  } else {
+    res.render("login.ejs")
+}
 });
 
 //Routing login page
