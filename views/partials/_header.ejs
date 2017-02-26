@@ -1,10 +1,13 @@
 <div>
+
   <% if(user_id) { %>
+      <h3> Welcome <%= user_id.email %>! </h3>
       <form action="/logout" method="POST" style="margin:100px;">
-      <input type="submit" value="Logout"></p>
+      <input type="submit" value="Logout">
       </form>
   <% } else { %>
     <p><a href="/login"> Login </a></p>
     <a href="/register"> Register </a>
   <% } %>
+
 </div>

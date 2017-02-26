@@ -1,4 +1,4 @@
-const express =require("express");
+const express = require("express");
 const bodyParser = require("body-parser");
 const generateRandNum = require("./random");
 const bcrypt = require("bcrypt");
@@ -14,6 +14,8 @@ app.use(cookieSession({
   name: 'session',
   keys: ['key1', 'key2']
 }));
+
+app.use(express.static(__dirname + '/public'));
 
 
 let users = {

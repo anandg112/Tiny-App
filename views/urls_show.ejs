@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
   <title>TinyApp</title>
+  <link rel='stylesheet' href='/nav.css' />
   <h1>URLs</h1>
 </head>
 <body>
   <header>
     <% include partials/_header %>
   </header>
+
+  <nav id="nav-bar">
+  <img class="logo" src="/images/tiny.png">
+  <span class="header">TinyApp</span>
+  </nav>
+
    <form action="/urls/<%= shortURL %>/update" method="POST" style="margin:30px;">
   <h3>shortURL: <%= shortURL %> </h3><br>
   <input type="text" id="longURL" name="longURL" style="width: 200px" value=<%=longURL %>>

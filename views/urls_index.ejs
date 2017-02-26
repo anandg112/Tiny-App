@@ -1,21 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <h1>URLs</h1>
+  <link rel='stylesheet' href='/nav.css' />
+  <h1>URLs</h1>
   <title>TinyApp</title>
 </head>
 <body>
   <header>
     <% include partials/_header %>
   </header>
+
+  <nav id="nav-bar">
+  <img class="logo" src="/images/tiny.png">
+  <span class="header">TinyApp</span>
+  </nav>
+
   <% for(shortURL in urls){ %>
-    <li>  <%= shortURL %> -> <%= urls[shortURL]["longURL"] %> </li>
+    <li>
+        <%= shortURL %> -> <%= urls[shortURL]["longURL"] %>
+    </li>
         <form method="POST" action="/urls/<%= shortURL %>/delete">
           <input type="submit" value="Delete">
           <a href="/urls/<%= shortURL%>">Edit</a>
         </form>
   <% } %>
-  
+
   <p>
     <em>
       <b>Have a link you want to shorten?</b>

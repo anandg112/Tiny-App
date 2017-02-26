@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel='stylesheet' href='/nav.css' />
   <title>TinyApp</title>
-  <h3> Login </h3>
 </head>
+
 <body>
-    <form action="/login" method="POST" style="margin:100px;">
-        <input type="email" id="email" name="email" placeholder="Email">
-        <input type="password" id="password" name="password" placeholder="Password">
-        <input type="submit" value="Submit">
-    </form>
-    <a href="/register"> Register </a>
+
+  <nav id="nav-bar">
+  <img class="logo" src="/images/tiny.png">
+  <span class="header">TinyApp</span>
+  </nav>
+
+
+
+  <form action="/login" method="POST" style="margin:100px;">
+    <h3 class="title"> Login </h1>
+    <input type="email" id="email" name="email" placeholder="Email">
+    <input type="password" id="password" name="password" placeholder="Password">
+    <input type="submit" value="Submit">
+  </form>
+
+  <a href="/register"> Register </a>
+
 </body>
 
 </html>

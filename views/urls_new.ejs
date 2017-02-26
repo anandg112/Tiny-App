@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <h1>URLs</h1>
+    <link rel='stylesheet' href='/nav.css' />
   </head>
-  <body style="font-size:20px; padding:50px;">
+  
+  <body style="font-size:20px;">
+
+    <nav id="nav-bar">
+    <img class="logo" src="/images/tiny.png">
+    <span class="header">TinyApp</span>
+    </nav>
+
     <form action="/urls" method="POST" style="margin:150px;">
       <label for="longURL">Enter a URL:</label>
       <input id="longURL" type="text" name="longURL" placeholder="http://" value="http://" style="width: 300px">
